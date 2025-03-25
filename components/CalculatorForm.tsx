@@ -21,6 +21,13 @@ export default function CalculatorForm() {
     profitRate?: number;
   }>(null);
 
+  const formatNumber = (value: string) => {
+    const num = value.replace(/[^\d]/g, '');
+    return num ? Number(num).toLocaleString() : '';
+  };
+
+  const unformatNumber = (value: string) => value.replace(/[^\d]/g, '');
+
   const handleChange = (index: number, field: keyof Purchase, value: string) => {
     const updated = [...purchases];
     updated[index][field] = value;
@@ -33,13 +40,22 @@ export default function CalculatorForm() {
     }
   };
 
+  const handleReset = () => {
+    setPurchases([
+      { price: '', quantity: '' },
+      { price: '', quantity: '' },
+    ]);
+    setTargetPrice('');
+    setResult(null);
+  };
+
   const handleCalculate = () => {
     let totalAmount = 0;
     let totalQuantity = 0;
 
     purchases.forEach(({ price, quantity }) => {
-      const p = parseFloat(price);
-      const q = parseFloat(quantity);
+      const p = parseFloat(price.replace(/,/g, ''));
+      const q = parseFloat(quantity.replace(/,/g, ''));
       if (!isNaN(p) && !isNaN(q)) {
         totalAmount += p * q;
         totalQuantity += q;
@@ -54,7 +70,7 @@ export default function CalculatorForm() {
     const averagePrice = totalAmount / totalQuantity;
 
     let profitRate;
-    const target = parseFloat(targetPrice);
+    const target = parseFloat(targetPrice.replace(/,/g, ''));
     if (!isNaN(target)) {
       profitRate = ((target - averagePrice) / averagePrice) * 100;
     }
@@ -69,23 +85,38 @@ export default function CalculatorForm() {
 
   return (
     <div className="bg-white p-6 md:p-8 rounded-2xl shadow-xl w-full max-w-md transition-all">
-      <h2 className="text-xl font-bold mb-4">💰 매수 정보 입력</h2>
+      <div className="flex justify-between items-center mb-4">
+        <h2 className="text-xl font-bold">💰 매수 정보 입력</h2>
+        <button
+          onClick={handleReset}
+          title="초기화"
+          className="text-gray-500 hover:text-red-500 text-lg"
+        >
+          🔄
+        </button>
+      </div>
 
       {purchases.map((purchase, index) => (
         <div key={index} className="mb-3 flex gap-2">
           <input
-            type="number"
+            type="text"
+            inputMode="numeric"
+            pattern="[0-9]*"
+            onWheel={(e) => e.currentTarget.blur()}
             placeholder={`단가 (${index + 1})`}
-            className="w-1/2 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-            value={purchase.price}
-            onChange={(e) => handleChange(index, 'price', e.target.value)}
+            className="w-1/2 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 text-right"
+            value={formatNumber(purchase.price)}
+            onChange={(e) => handleChange(index, 'price', unformatNumber(e.target.value))}
           />
           <input
-            type="number"
+            type="text"
+            inputMode="numeric"
+            pattern="[0-9]*"
+            onWheel={(e) => e.currentTarget.blur()}
             placeholder={`수량 (${index + 1})`}
-            className="w-1/2 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-            value={purchase.quantity}
-            onChange={(e) => handleChange(index, 'quantity', e.target.value)}
+            className="w-1/2 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 text-right"
+            value={formatNumber(purchase.quantity)}
+            onChange={(e) => handleChange(index, 'quantity', unformatNumber(e.target.value))}
           />
         </div>
       ))}
@@ -101,11 +132,14 @@ export default function CalculatorForm() {
 
       <div className="mt-4">
         <input
-          type="number"
+          type="text"
+          inputMode="numeric"
+          pattern="[0-9]*"
+          onWheel={(e) => e.currentTarget.blur()}
           placeholder="🎯 목표 주가 (선택)"
-          className="w-2/3 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-          value={targetPrice}
-          onChange={(e) => setTargetPrice(e.target.value)}
+          className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 text-right"
+          value={formatNumber(targetPrice)}
+          onChange={(e) => setTargetPrice(unformatNumber(e.target.value))}
         />
       </div>
 

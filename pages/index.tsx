@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import CalculatorForm from '../components/CalculatorForm';
+import Footer from '../components/Footer';
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
         <h1 className="text-2xl font-bold mb-6 text-center">📈 물타기 계산기 📉</h1>
         <CalculatorForm />
       {/* </main> */}
+        <Footer />
     </div>
   );
 }
