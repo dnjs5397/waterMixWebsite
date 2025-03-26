@@ -8,6 +8,8 @@ export default function App({ Component, pageProps }: AppProps) {
     <>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="naver-site-verification" content="abcd1234efgh5678" />
+        <meta name="google-adsense-account" content="ca-pub-6144387361407450"/>
         <title>물타기 계산기</title>
       </Head>
 
