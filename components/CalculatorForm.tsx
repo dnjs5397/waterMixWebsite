@@ -84,7 +84,7 @@ export default function CalculatorForm() {
   };
 
   return (
-    <div className="bg-white p-6 md:p-8 rounded-2xl shadow-xl w-full max-w-md transition-all">
+    <div className="bg-white p-6 md:p-8 rounded-2xl shadow-xl w-full max-w-md transition-all font-bold">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-xl font-bold">💰 매수 정보 입력</h2>
         <button
@@ -145,7 +145,7 @@ export default function CalculatorForm() {
 
       <button
         onClick={handleCalculate}
-        className="mt-6 w-full bg-blue-600 text-white py-3 rounded-xl font-semibold hover:bg-blue-700 active:scale-95 transition"
+        className="mt-6 w-full bg-blue-600 text-white py-3 rounded-xl font-bold hover:bg-blue-700 active:scale-95 transition"
       >
         🔍 계산하기
       </button>
