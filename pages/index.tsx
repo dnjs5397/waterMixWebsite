@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import CalculatorForm from '../components/CalculatorForm';
 import Footer from '../components/Footer';
+import GuideSection from '../components/GuideSection';
 
 export default function Home() {
   return (
@@ -25,8 +26,11 @@ export default function Home() {
         <meta name="twitter:description" content="매수한 종목의 평균 단가와 목표주가 수익률을 간단히 계산해보자!" />
         <meta name="twitter:image" content="https://watermix.site/og-image.png" />
       </Head>
-        <h1 className="text-2xl font-bold mb-6 text-center">📈 물타기 계산기 📉</h1>
-        <CalculatorForm />
+        <h1 className="text-2xl font-bold mt-10 mb-6 text-center">📈 물타기 계산기 📉</h1>
+        <div className="flex-1 flex items-center justify-center w-full">
+          <CalculatorForm />
+        </div>
+        <GuideSection />
         <Footer />
     </div>
   );
