@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import CalculatorForm from '../components/CalculatorForm';
+import CalculatorTabs from '../components/CalculatorTabs/CalculatorTabs';
 import Footer from '../components/Footer';
 import GuideSection from '../components/GuideSection';
 
@@ -28,7 +28,7 @@ export default function Home() {
       </Head>
         <h1 className="text-2xl font-bold mt-10 mb-6 text-center">📈 물타기 계산기 📉</h1>
         <div className="flex-1 flex items-center justify-center w-full">
-          <CalculatorForm />
+          <CalculatorTabs />
         </div>
         <GuideSection />
         <Footer />

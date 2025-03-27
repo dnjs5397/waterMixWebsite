@@ -1,13 +1,13 @@
 'use client';
 import { useState } from 'react';
-import ResultDisplay from './ResultDisplay';
+import ResultDisplay from '../ResultDisplay';
 
 type Purchase = {
   price: string;
   quantity: string;
 };
 
-export default function CalculatorForm() {
+export default function AverageCalculator() {
   const [purchases, setPurchases] = useState<Purchase[]>([
     { price: '', quantity: '' },
     { price: '', quantity: '' },
@@ -22,11 +22,11 @@ export default function CalculatorForm() {
   }>(null);
 
   const formatNumber = (value: string) => {
-    const num = value.replace(/[^\d]/g, '');
-    return num ? Number(num).toLocaleString() : '';
+    const num = parseFloat(value.replace(/[^0-9.]/g, ''));
+    return isNaN(num) ? '' : num.toLocaleString(undefined, { maximumFractionDigits: 2 });
   };
 
-  const unformatNumber = (value: string) => value.replace(/[^\d]/g, '');
+  const unformatNumber = (value: string) => value.replace(/[^0-9.]/g, '');
 
   const handleChange = (index: number, field: keyof Purchase, value: string) => {
     const updated = [...purchases];
@@ -54,8 +54,8 @@ export default function CalculatorForm() {
     let totalQuantity = 0;
 
     purchases.forEach(({ price, quantity }) => {
-      const p = parseFloat(price.replace(/,/g, ''));
-      const q = parseFloat(quantity.replace(/,/g, ''));
+      const p = parseFloat(price);
+      const q = parseFloat(quantity);
       if (!isNaN(p) && !isNaN(q)) {
         totalAmount += p * q;
         totalQuantity += q;
@@ -70,7 +70,7 @@ export default function CalculatorForm() {
     const averagePrice = totalAmount / totalQuantity;
 
     let profitRate;
-    const target = parseFloat(targetPrice.replace(/,/g, ''));
+    const target = parseFloat(targetPrice);
     if (!isNaN(target)) {
       profitRate = ((target - averagePrice) / averagePrice) * 100;
     }
@@ -86,7 +86,7 @@ export default function CalculatorForm() {
   return (
     <div className="bg-white p-6 md:p-8 rounded-2xl shadow-xl w-full max-w-md transition-all font-bold">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-xl">💰 매수 정보 입력</h2>
+        <h2 className="text-xl font-bold">💰 매수 정보 입력</h2>
         <button
           onClick={handleReset}
           title="초기화"
@@ -100,8 +100,7 @@ export default function CalculatorForm() {
         <div key={index} className="mb-3 flex gap-2">
           <input
             type="text"
-            inputMode="numeric"
-            pattern="[0-9]*"
+            inputMode="decimal"
             onWheel={(e) => e.currentTarget.blur()}
             placeholder={`단가 (${index + 1})`}
             className="w-1/2 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 text-right"
@@ -133,8 +132,7 @@ export default function CalculatorForm() {
       <div className="mt-4">
         <input
           type="text"
-          inputMode="numeric"
-          pattern="[0-9]*"
+          inputMode="decimal"
           onWheel={(e) => e.currentTarget.blur()}
           placeholder="🎯 목표 주가 (선택)"
           className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 text-right"
@@ -145,7 +143,7 @@ export default function CalculatorForm() {
 
       <button
         onClick={handleCalculate}
-        className="mt-6 w-full bg-blue-600 text-white py-3 rounded-xl hover:bg-blue-700 active:scale-95 transition"
+        className="mt-6 w-full bg-blue-600 text-white py-3 rounded-xl font-bold hover:bg-blue-700 active:scale-95 transition"
       >
         🔍 계산하기
       </button>
