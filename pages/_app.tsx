@@ -11,7 +11,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <meta name="naver-site-verification" content="91c08553d77aa81f11e2017ee6c49d013328fb8b" />
         <meta name="google-adsense-account" content="ca-pub-6144387361407450"/>
         <title>물타기 계산기</title>
-        <link rel="icon" type="image/png" href="/favicon.png" />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       {/* ✅ GA4 최신 스크립트: 공식 가이드를 Next.js용으로 변환 */}
