@@ -10,15 +10,15 @@ export default function ResultDisplay({ result }: { result: Result }) {
     <div className="mt-8 p-4 bg-gray-50 border rounded-lg text-lg text-gray-800">
       <p>
         📌 평균 매입 단가:{' '}
-        <strong>{result.averagePrice.toLocaleString()} 원</strong>
+        <strong>{result.averagePrice.toLocaleString(undefined, { maximumFractionDigits: 2 })} 원</strong>
       </p>
       <p>
         📦 총 수량:{' '}
-        <strong>{result.totalQuantity.toLocaleString()} 주</strong>
+        <strong>{result.totalQuantity.toLocaleString(undefined, { maximumFractionDigits: 2 })} 주</strong>
       </p>
       <p>
         💸 총 매수 금액:{' '}
-        <strong>{result.totalAmount.toLocaleString()} 원</strong>
+        <strong>{result.totalAmount.toLocaleString(undefined, { maximumFractionDigits: 2 })} 원</strong>
       </p>
       {result.profitRate !== undefined && (
         <p>

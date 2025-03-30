@@ -8,7 +8,7 @@ export default function Home() {
     <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center px-4">
       <Head>
         {/* <title>물타기 계산기</title> */}
-        <title>물타기 계산기 - 평균 단가 계산기</title>
+        <title>물타기 계산기 - 주식 평균 단가 계산기</title>
         <meta name="description" content="매수한 종목의 평균 단가와 목표주가 수익률을 간단히 계산해보자!" />
         <meta name="keywords" content="물타기 계산기, 평균 단가 계산기, 주식 계산기" />
         <meta name="author" content="watermix.site" />

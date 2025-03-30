@@ -26,7 +26,18 @@ export default function AverageCalculator() {
     return isNaN(num) ? '' : num.toLocaleString(undefined, { maximumFractionDigits: 2 });
   };
 
-  const unformatNumber = (value: string) => value.replace(/[^0-9.]/g, '');
+  const unformatNumber = (value: string) => {
+    // 숫자와 소수점만 남기기
+    let cleaned = value.replace(/[^0-9.]/g, '');
+  
+    // 소수점이 2개 이상일 경우 첫 번째만 남기고 제거
+    const parts = cleaned.split('.');
+    if (parts.length > 2) {
+      cleaned = parts[0] + '.' + parts.slice(1).join('').replace(/\./g, '');
+    }
+  
+    return cleaned;
+  };
 
   const handleChange = (index: number, field: keyof Purchase, value: string) => {
     const updated = [...purchases];
@@ -104,7 +115,7 @@ export default function AverageCalculator() {
             onWheel={(e) => e.currentTarget.blur()}
             placeholder={`단가 (${index + 1})`}
             className="w-1/2 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 text-right"
-            value={formatNumber(purchase.price)}
+            value={unformatNumber(purchase.price)}
             onChange={(e) => handleChange(index, 'price', unformatNumber(e.target.value))}
           />
           <input

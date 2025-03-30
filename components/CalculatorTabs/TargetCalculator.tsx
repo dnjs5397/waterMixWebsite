@@ -8,7 +8,18 @@ export default function TargetCalculator() {
   const [targetAverage, setTargetAverage] = useState('');
   const [result, setResult] = useState<string | null>(null);
 
-  const unformatNumber = (value: string) => value.replace(/[^0-9.]/g, '');
+  const unformatNumber = (value: string) => {
+    // 숫자와 소수점만 남기기
+    let cleaned = value.replace(/[^0-9.]/g, '');
+  
+    // 소수점이 2개 이상일 경우 첫 번째만 남기고 제거
+    const parts = cleaned.split('.');
+    if (parts.length > 2) {
+      cleaned = parts[0] + '.' + parts.slice(1).join('').replace(/\./g, '');
+    }
+  
+    return cleaned;
+  };
   const formatNumber = (value: string) => {
     const num = parseFloat(value.replace(/[^0-9.]/g, ''));
     return isNaN(num) ? '' : num.toLocaleString(undefined, { maximumFractionDigits: 2 });
@@ -49,7 +60,7 @@ export default function TargetCalculator() {
       const rounded = Math.ceil(x);
       const totalCost = rounded * curr;
       setResult(
-        `목표가를 맞추려면 ${rounded.toLocaleString()}주를 더 매수해야 해요.<br />총 ${totalCost.toLocaleString()}원 더 매수해야 해요.`
+        `목표가를 맞추려면 ${rounded.toLocaleString()}주를 더 매수해야 해요.<br />총 ${totalCost.toLocaleString(undefined, { maximumFractionDigits: 2 })}원 더 매수해야 해요.`
       );
     }
   };
@@ -73,7 +84,7 @@ export default function TargetCalculator() {
           inputMode="decimal"
           placeholder="내 평균 단가"
           className="w-full px-4 py-2 border rounded-lg text-right"
-          value={formatNumber(average)}
+          value={unformatNumber(average)}
           onChange={(e) => setAverage(unformatNumber(e.target.value))}
         />
       </div>
@@ -96,7 +107,7 @@ export default function TargetCalculator() {
           inputMode="decimal"
           placeholder="현재 가격"
           className="w-full px-4 py-2 border rounded-lg text-right"
-          value={formatNumber(currentPrice)}
+          value={unformatNumber(currentPrice)}
           onChange={(e) => setCurrentPrice(unformatNumber(e.target.value))}
         />
       </div>
@@ -107,7 +118,7 @@ export default function TargetCalculator() {
           inputMode="decimal"
           placeholder="목표 평균 단가"
           className="w-full px-4 py-2 border rounded-lg text-right"
-          value={formatNumber(targetAverage)}
+          value={unformatNumber(targetAverage)}
           onChange={(e) => setTargetAverage(unformatNumber(e.target.value))}
         />
       </div>
