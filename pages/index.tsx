@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import CalculatorTabs from '../components/CalculatorTabs/CalculatorTabs';
 import Footer from '../components/Footer';
-import LazyGuideSection from '../components/LazyGuideSection';
+import GuideSection from '../components/GuideSection';
 
 export default function Home() {
   return (
@@ -30,7 +30,7 @@ export default function Home() {
         <div className="flex-1 flex items-center justify-center w-full">
           <CalculatorTabs />
         </div>
-        <LazyGuideSection />
+        <GuideSection />
         <Footer />
     </div>
   );
