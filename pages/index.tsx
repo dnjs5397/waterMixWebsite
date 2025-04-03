@@ -2,6 +2,7 @@ import Head from 'next/head';
 import CalculatorTabs from '../components/CalculatorTabs/CalculatorTabs';
 import Footer from '../components/Footer';
 import GuideSection from '../components/GuideSection';
+import AdfitBanner from '../components/AdfitBanner';
 
 export default function Home() {
   return (
@@ -30,6 +31,7 @@ export default function Home() {
         <div className="flex-1 flex items-center justify-center w-full">
           <CalculatorTabs />
         </div>
+        <AdfitBanner /> {/* ⬅️ 광고 삽입 */}
         <GuideSection />
         <Footer />
     </div>
