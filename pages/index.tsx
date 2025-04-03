@@ -1,7 +1,9 @@
 import Head from 'next/head';
 import CalculatorTabs from '../components/CalculatorTabs/CalculatorTabs';
 import Footer from '../components/Footer';
-import GuideSection from '../components/GuideSection';
+import dynamic from 'next/dynamic';
+
+const GuideSection = dynamic(() => import('../components/GuideSection'), { ssr: false });
 
 export default function Home() {
   return (

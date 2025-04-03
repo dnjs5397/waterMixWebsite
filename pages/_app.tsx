@@ -15,6 +15,15 @@ export default function App({ Component, pageProps }: AppProps) {
         <meta name="google-adsense-account" content="ca-pub-6144387361407450"/>
         <title>물타기 계산기 - 주식 평균단가 계산기</title>
         <link rel="icon" href="/favicon.ico" />
+        <link
+          rel="preload"
+          href="https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://www.google-analytics.com" />
       </Head>
 
       {/* ✅ GA4 최신 스크립트: 공식 가이드를 Next.js용으로 변환 */}
