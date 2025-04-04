@@ -3,6 +3,7 @@ import CalculatorTabs from '../components/CalculatorTabs/CalculatorTabs';
 import Footer from '../components/Footer';
 import GuideSection from '../components/GuideSection';
 import AdfitBanner from '../components/AdfitBanner';
+import InstallPWAButton from '../components/InstallPWAButton';
 
 export default function Home() {
   return (
@@ -33,6 +34,7 @@ export default function Home() {
         </div>
         <AdfitBanner /> {/* ⬅️ 광고 삽입 */}
         <GuideSection />
+        <InstallPWAButton />
         <Footer />
     </div>
   );

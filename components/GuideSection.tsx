@@ -12,13 +12,13 @@ export default function GuideSection() {
         <ul className="list-disc list-inside mb-3">
           <li>매수한 단가와 수량을 입력하세요 (최대 5개까지 입력 가능)</li>
           <li>(선택) 목표 주가를 입력하면 몇 %가 올라야 해당 주가인지 알 수 있습니다.</li>
-          <li>[🔍 계산하기] 버튼을 누르면 결과가 바로 나옵니다!</li>
+          <li>계산하기 버튼을 누르면 결과를 확인할 수 있습니다.</li>
         </ul>
         <p className="mb-3 font-semibold">🎯 목표 단가 맞추기 사용 방법</p>
         <ul className="list-disc list-inside mb-3">
           <li>매수한 단가와 보유 수량, 현재 주가를 입력하세요</li>
           <li>원하는 평균 단가를 입력하세요</li>
-          <li>버튼을 누르면 목표 평균 단가가 되기 위해서 몇 주를 더 사야 하는지 나옵니다!</li>
+          <li>목표 평균 단가가 되기 위해서 몇 주를 더 사야 하는지 나옵니다!</li>
         </ul>
         <p className="text-sm text-gray-500">
           💡 투자 판단의 참고용으로 사용해주시고, 실제 투자 결정은 본인의 판단에 따라 신중하게 해주세요.

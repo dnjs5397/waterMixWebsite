@@ -24,6 +24,8 @@ export default function App({ Component, pageProps }: AppProps) {
         />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="preconnect" href="https://www.google-analytics.com" />
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#2563eb" />
       </Head>
 
       {/* ✅ GA4 최신 스크립트: 공식 가이드를 Next.js용으로 변환 */}
