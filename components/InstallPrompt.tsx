@@ -62,8 +62,8 @@ export default function InstallPrompt() {
         <div className="relative">
           <button onClick={dismissIOS} className="absolute top-1 right-2 text-lg text-gray-400 hover:text-gray-600">×</button>
           <p>
-            📲 iPhone 사용자는 <strong>Safari</strong>에서<br />
-            <strong>공유 버튼 &rarr; 홈 화면에 추가</strong>를 눌러주세요!
+            📲 앱처럼 사용하려면 설치해보세요!<br />
+            <strong>📤 공유 버튼 &rarr; 홈 화면에 추가</strong>를 눌러주세요!
           </p>
         </div>
       )}
